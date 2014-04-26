@@ -7,3 +7,8 @@
   <input type="text" name="kittens" value="<%= single_cat[:kittens] %>">
   <input type="submit" value="Update Cat" id="button">
 </form>
+
+<form action="/cats/<%= single_cat[:id] %>" method="post">
+  <input type="hidden" name="_method" value="delete">
+  <input type="submit" value="Delete Cat" id="button">
+</form>

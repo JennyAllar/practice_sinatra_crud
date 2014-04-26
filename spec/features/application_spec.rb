@@ -5,7 +5,8 @@ Capybara.app = Application
 
 feature 'Homepage' do
   scenario 'see cats that have been created' do
-    visit '/cats/new'
+    visit '/'
+    click_on 'Add a damn cat'
 
     fill_in 'name', with: 'Siamese'
     fill_in 'color', with: 'Grey'
@@ -16,7 +17,8 @@ feature 'Homepage' do
   end
 
   scenario 'can update cat' do
-    visit '/cats/new'
+    visit '/'
+    click_on 'Add a damn cat'
     fill_in 'name', with: 'Tabular'
     fill_in 'color', with: 'Pink'
     fill_in 'kittens', with: '4'
@@ -25,6 +27,18 @@ feature 'Homepage' do
     fill_in 'name', with: 'Lola'
     click_on 'Update Cat'
     expect(page).to have_content('Lola')
+    expect(page).to_not have_content('Tabular')
+  end
+
+  scenario 'can delete a cat' do
+    visit '/'
+    click_on 'Add a damn cat'
+    fill_in 'name', with: 'Henry'
+    fill_in 'color', with: 'Brick'
+    fill_in 'kittens', with: '5'
+    click_on 'Add Cat'
+    click_on 'Henry'
+    click_on 'Delete Cat'
     expect(page).to_not have_content('Tabular')
   end
 
