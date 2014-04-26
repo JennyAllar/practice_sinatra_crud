@@ -1,0 +1,14 @@
+Sequel.migration do
+  up do
+    create_table(:cats) do
+      primary_key :id
+      String :name, null: false
+      String :color, null: false
+      String :kittens, default: 0
+    end
+  end
+
+  down do
+    drop_table(:artists)
+  end
+end
